@@ -7,14 +7,13 @@ import uvicorn
 app = FastAPI(title="Embedding Service", version="1.0.0")
 
 # Initialize embedding model on startup
-# Using the correct FastEmbed model name
 embedding_model = TextEmbedding(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+    model_name="nomic-ai/nomic-embed-text-v1.5"
 )
 
 class EmbeddingRequest(BaseModel):
     input: Union[str, List[str]]
-    model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    model: str = "nomic-ai/nomic-embed-text-v1.5"
 
 class EmbeddingResponse(BaseModel):
     object: str = "list"
@@ -26,9 +25,9 @@ class EmbeddingResponse(BaseModel):
 async def root():
     return {
         "message": "Embedding Service API",
-        "model": "sentence-transformers/all-MiniLM-L6-v2",
-        "max_tokens": 256,
-        "dimensions": 384
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "max_tokens": 8192,
+        "dimensions": 768
     }
 
 @app.get("/health")

@@ -21,8 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY app.py .
 
-# Pre-download the embedding model during build
-RUN python -c "from fastembed import TextEmbedding; TextEmbedding('sentence-transformers/all-MiniLM-L6-v2')"
+# Pre-download the embedding model during build (UPDATED MODEL)
+RUN python -c "from fastembed import TextEmbedding; TextEmbedding('nomic-ai/nomic-embed-text-v1.5')"
 
 # Clean up build dependencies to reduce image size (optional)
 # RUN apt-get purge -y --auto-remove gcc g++ build-essential
